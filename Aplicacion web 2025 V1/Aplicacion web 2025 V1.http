@@ -1,0 +1,13 @@
+ @Aplicacion_web_2025_V1_HostAddress = http://localhost:5115
+
+# GET {{Aplicacion_web_2025_V1_HostAddress}}/weatherforecast/
+# Accept: application/json
+
+# ###
+
+//@Proyecto_Web_HostAddress = http://localhost:5287
+
+GET {{Proyecto_Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

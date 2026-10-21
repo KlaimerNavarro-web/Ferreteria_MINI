@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [dbo].[SP_MOSTRAR_CATEGORIA]
+AS
+BEGIN
+    SELECT * 
+	FROM Categoria c
+	WHERE C.estado = 1
+END

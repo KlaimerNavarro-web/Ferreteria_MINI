@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [dbo].[SP_MOSTRAR_PRESENTACION]
+AS
+BEGIN
+    SELECT * 
+	FROM Presentacion p
+	WHERE p.estado = 1
+END

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DabaseFerreteriaDonToño</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a39f6a5e-c687-49b5-b83f-2748427461a5}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql170DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DabaseFerreteriaDonToño</RootNamespace>
+    <AssemblyName>DabaseFerreteriaDonToño</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Productos.sql" />
+    <Build Include="dbo\Tables\Producto.sql" />
+    <Build Include="dbo\Tables\Cliente.sql" />
+    <Build Include="dbo\Tables\Proveedor.sql" />
+    <Build Include="dbo\Tables\Negocio.sql" />
+    <Build Include="dbo\Tables\Factura.sql" />
+    <Build Include="dbo\Tables\Permiso.sql" />
+    <Build Include="dbo\Tables\Categoria.sql" />
+    <Build Include="dbo\Tables\Compra.sql" />
+    <Build Include="dbo\Tables\Detalle_Compra.sql" />
+    <Build Include="dbo\Tables\Detalle_Factura.sql" />
+    <Build Include="dbo\Tables\Inventario.sql" />
+    <Build Include="dbo\Tables\Rol.sql" />
+    <Build Include="dbo\Tables\Usuario.sql" />
+    <Build Include="dbo\Tables\Presentacion.sql" />
+    <Build Include="dbo\Tables\Ventas.sql" />
+    <Build Include="dbo\Tables\DetallesVentas.sql" />
+    <Build Include="Security\Missael.sql" />
+    <Build Include="dbo\Stored Procedures\prueba_SP_INSERTAR_VENTA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Registrar_Producto.sql" />
+    <Build Include="dbo\Stored Procedures\prueba_sp_Insertar_DetalleVenta.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EditarProducto.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarProducto.sql" />
+    <Build Include="dbo\Stored Procedures\sp_SeleccionarDetallesVentaPorVentaId.sql" />
+    <Build Include="dbo\Stored Procedures\prueba_SP_INSERTAR_COMPRA.sql" />
+    <Build Include="dbo\Stored Procedures\prueba_sp_Insertar_DetalleCompra.sql" />
+    <Build Include="dbo\Stored Procedures\sp_SeleccionarCompraConDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ActualizarCompra.sql" />
+    <Build Include="dbo\Stored Procedures\sp_EliminarDetalleCompraPorCompraId.sql" />
+    <Build Include="dbo\Stored Procedures\sp_EliminarCompra.sql" />
+    <Build Include="dbo\Stored Procedures\SP_REGISTRAR_CLIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_CLIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_CLIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\SP_REGISTRAR_PROVEEDOR.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_PROVEEDOR.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Listar_Detalle_Compra.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_PROVEEDOR.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Actualizar_Detalle_Compra.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Obtener_Detalle_Compra_PorId.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertarFactura.sql" />
+    <Build Include="dbo\Stored Procedures\sp_SeleccionarFacturaPorId.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ActualizarFactura.sql" />
+    <Build Include="dbo\Stored Procedures\sp_EliminarFactura.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Insertar_Detalle_Factura.sql" />
+    <Build Include="dbo\Stored Procedures\SP_REGISTRAR_USUARIO.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Listar_Detalle_Factura.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_USUARIO.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Actualizar_Detalle_Factura.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_USUARIO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_REGISTRAR_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Eliminar_Detalle_Factura.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Obtener_Detalle_Factura_PorId.sql" />
+    <Build Include="dbo\Stored Procedures\SP_editarcategoria.sql" />
+    <Build Include="dbo\Stored Procedures\SP_eliminarcategoria.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Insertar_CompraConDetalles.sql" />
+    <Build Include="dbo\Stored Procedures\AgregarRol.sql" />
+    <Build Include="dbo\Stored Procedures\AgregarUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\SP_BUSCAR_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CARGAR_PRODUCTOS.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_DETALLE_COMPRA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR.sql" />
+    <Build Include="dbo\Stored Procedures\InsertarDetalleCompra.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\sP_InsertarDetalleFactura.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_DETALLE_COMPRA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERTAR.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERTAR_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERTAR_DETALLE_COMPRA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERTAR_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\SP_LoginUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MOSTRAR.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MOSTRAR_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MOSTRAR_DETALLE_COMPRA.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MOSTRAR_PRESENTACION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MOSTRAR_PRODUCTO.sql" />
+    <Build Include="dbo\Stored Procedures\spbuscar_categoria.sql" />
+    <Build Include="dbo\Stored Procedures\SP_REGISTRAR_PRESENTACION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EditarPresentacion.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EliminarPresentacion.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InicioUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERTAR_PRESENTACION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EDITAR_PRESENTACION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ELIMINAR_PRESENTACION.sql" />
+    <Build Include="dbo\Stored Procedures\SP_BUSCAR_PRESENTACION.sql" />
+    <Build Include="dbo\User Defined Types\EDETALLE_COMPRA.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].[SP_CARGAR_PRODUCTOS] 
+AS
+BEGIN
+SELECT * FROM Producto pr
+WHERE pr.Estado = 'Existencia'
+END
