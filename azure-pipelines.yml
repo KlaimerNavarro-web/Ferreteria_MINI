@@ -23,8 +23,9 @@ stages:
         command: 'publish'
         publishWebProjects: false
         projects: '**/*Aplicacion*2025*.csproj'
-        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        arguments: '--configuration $(buildConfiguration) --output "$(Build.ArtifactStagingDirectory)"'
         zipAfterPublish: true
+        modifyOutputPath: false  # <-- ESTA LÍNEA SOLUCIONA EL ERROR DE LOS ESPACIOS
     - task: PublishBuildArtifacts@1
       displayName: 'Publicar Artefactos'
       inputs:
@@ -52,4 +53,4 @@ stages:
         azureSubscription: 'AzureConnection'
         appType: 'webApp'
         appName: 'ApiDonToño'
-        package: '$(System.ArtifactsDirectory)/drop/*.zip'
+        package: '$(System.ArtifactsDirectory)/**/*.zip'
