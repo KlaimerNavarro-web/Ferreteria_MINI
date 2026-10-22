@@ -5,9 +5,9 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-if (string.IsNullOrWhiteSpace(connectionString))
-    throw new InvalidOperationException("Configura ConnectionStrings:DefaultConnection en App Service.");
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//if (string.IsNullOrWhiteSpace(connectionString))
+//    throw new InvalidOperationException("Configura ConnectionStrings:DefaultConnection en App Service.");
 
 var jwtKey = builder.Configuration["Jwt:Key"];
 if (string.IsNullOrWhiteSpace(jwtKey) || jwtKey.Length < 32)
