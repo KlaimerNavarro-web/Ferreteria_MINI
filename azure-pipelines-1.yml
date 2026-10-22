@@ -1,5 +1,5 @@
 trigger:
-  - master # Se dispara automáticamente al hacer push a la rama master
+  - main # Se dispara automáticamente al hacer push a la rama master
  
 pool:
   vmImage: 'windows-2022'
@@ -26,7 +26,7 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: false
-        projects: '**/veterinariweb.csproj'
+        projects: '**/Aplicacion web 2025 V1.csproj'
         arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
         zipAfterPublish: true
  
@@ -56,7 +56,7 @@ stages:
     - task: AzureWebApp@1
       displayName: 'Desplegar en Azure App Service'
       inputs:
-        azureSubscription: 'ApiFerreteriaDonToño'
+        azureSubscription: 'AzureConnection'
         appType: 'webApp'
         appName: 'ApiDonToño'
         package: '$(System.ArtifactsDirectory)/drop/*.zip'
