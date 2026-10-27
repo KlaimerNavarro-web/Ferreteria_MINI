@@ -117,11 +117,14 @@ namespace Capa_Negocio
             var usuario = _usuarioDatos.Login(inicioRequest);
             if (usuario == null) return null;
 
-            // Verificar contraseña
-            if (VerificarClave(contraseña, usuario.contraseña))
-                return usuario;
+            // Se admiten hashes salt.hash y contraseñas en texto plano ya existentes.
+            bool esHash = usuario.contraseña.Contains('.');
+            bool contraseñaValida = esHash
+                ? VerificarClave(contraseña, usuario.contraseña)
+                : CryptographicOperations.FixedTimeEquals(
+                    Encoding.UTF8.GetBytes(contraseña), Encoding.UTF8.GetBytes(usuario.contraseña));
 
-            return usuario;
+            return contraseñaValida ? usuario : null;
         }
 
         private byte[] GenerarSalt(int tamaño = 16)

@@ -16,7 +16,7 @@ namespace Aplicacion_web_2025_V1.Controllers
             _venta_Negocio = new Venta_Negocio(config.GetConnectionString("DefaultConnection"));
         }
         [HttpPost]
-        [Authorize(Roles ="Admin, empleado")]
+        [Authorize(Roles = "Administrador, Empleado")]
         public IActionResult Post([FromBody] Venta2 venta)
         {
             try
@@ -31,6 +31,7 @@ namespace Aplicacion_web_2025_V1.Controllers
                 throw;
             }
         }
+        [Authorize(Roles = "Administrador, Empleado")]
         [HttpGet("{VentaId}")]
         public IActionResult Get(int VentaId)
         {

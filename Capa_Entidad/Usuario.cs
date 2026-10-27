@@ -31,5 +31,6 @@ namespace Capa_Entidad
         public bool estado { get; set; }
         public string fecha_registro { get; set; } = string.Empty;
         public int oRol { get; set; }
+        public string nombre_rol { get; set; } = string.Empty;
     }
 }

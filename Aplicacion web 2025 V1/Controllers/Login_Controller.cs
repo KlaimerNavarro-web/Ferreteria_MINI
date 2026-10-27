@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -31,6 +32,7 @@ namespace API_Ferreteria.Controllers
         // IniciarSesion
     
 
+        [AllowAnonymous]
         [HttpPost("IniciarSesion")]
         public IActionResult IniciarSesion([FromBody] Capa_Entidad.InicioRequest request)
         {
@@ -96,9 +98,9 @@ namespace API_Ferreteria.Controllers
             {
                 new Claim("id_usuario", usuario.id_usuario.ToString()),
                 new Claim("nombre", usuario.nombre ?? "Usuario"),
-                new Claim("contraseña", usuario.contraseña ?? "Usuario"),
                 new Claim("correo", usuario.correo ?? "Usuario"),
-                new Claim("id_rol", usuario.oRol.ToString())
+                new Claim("id_rol", usuario.oRol.ToString()),
+                new Claim(ClaimTypes.Role, usuario.nombre_rol)
             };
 
             // Obtener claves desde appsettings.json

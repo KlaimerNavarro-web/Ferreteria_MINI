@@ -252,7 +252,8 @@ namespace Capa_Datos
                                 direccion = reader["direccion"].ToString()!,
                                 correo = reader["correo"].ToString()!,
                                 estado = Convert.ToBoolean(reader["estado"]),
-                                oRol = Convert.ToInt32(reader["id_rol"])
+                                oRol = Convert.ToInt32(reader["id_rol"]),
+                                nombre_rol = reader["RolNombre"].ToString()!.Trim()
                                 
 
                             };

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
@@ -83,6 +84,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+
+builder.Services.AddAuthorization(options =>
+{
+    // Por defecto, la API queda reservada al administrador.
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireRole("Administrador")
+        .Build();
+});
 
 var app = builder.Build();
 

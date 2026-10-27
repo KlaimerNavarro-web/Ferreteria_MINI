@@ -18,6 +18,6 @@ BEGIN
     END
 
     -- Insertar el nuevo rol con su permiso correspondiente
-    INSERT INTO Rol (id_rol)
+    INSERT INTO Rol (descripcion)
     VALUES (@nombreRol);
 END;
