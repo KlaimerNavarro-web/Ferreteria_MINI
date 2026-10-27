@@ -32,6 +32,7 @@ namespace API_Ferreteria.Controllers
         // IniciarSesion
     
 
+
         [AllowAnonymous]
         [HttpPost("IniciarSesion")]
         public IActionResult IniciarSesion([FromBody] Capa_Entidad.InicioRequest request)
