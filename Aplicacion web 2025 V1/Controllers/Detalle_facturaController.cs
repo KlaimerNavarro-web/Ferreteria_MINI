@@ -1,6 +1,7 @@
-﻿using Capa_Entidad;
+using Capa_Entidad;
 using Capa_Negocio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Aplicacion_web_2025_V1.Controllers
 {
@@ -16,7 +17,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         }
 
         [HttpPost]
-        /*[Authorize(Roles = "Admin, empleado")]*/
+        [Authorize(Roles = "ADMINISTRADOR, EMPLEADO")]
         public IActionResult Post([FromBody] Detalle_Factura detalleFactura)
         {
             try
@@ -45,6 +46,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         }
 
         [HttpPut("{id_detalle_factura}")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult Put(int id_detalle_factura, [FromBody] Detalle_Factura detalleFactura)
         {
             try
@@ -62,6 +64,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         }
 
         [HttpDelete("{id_detalle_factura}")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult Delete(int id_detalle_factura)
         {
             try

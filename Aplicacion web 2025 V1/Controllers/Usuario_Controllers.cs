@@ -1,8 +1,9 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Capa_Entidad;
 using Capa_Datos;
 using Capa_Negocio; 
@@ -14,6 +15,7 @@ using System.Text.RegularExpressions; // Nuevo: Para la validación del correo
 namespace Aplicacion_web_2025_V1.Controllers
 {
     [ApiController]
+    [Authorize(Roles = "ADMINISTRADOR")]
     [Route("api/[controller]")]
     public class Usuario_Controllers : ControllerBase
     {

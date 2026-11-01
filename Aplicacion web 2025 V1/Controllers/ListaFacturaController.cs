@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Capa_Negocio;
 using Capa_Entidad;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = "ADMINISTRADOR, EMPLEADO")]
 public class ListaFacturaController : ControllerBase
 {
     private readonly Detalle_Factura_CN _detallefacturaNegocio;

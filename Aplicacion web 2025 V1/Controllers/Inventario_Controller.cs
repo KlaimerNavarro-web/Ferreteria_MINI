@@ -1,7 +1,8 @@
-﻿using Capa_Entidad;
+using Capa_Entidad;
 using Capa_Negocio;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -33,6 +34,7 @@ public class InventarioController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "ADMINISTRADOR")]
     public IActionResult Post([FromBody] Inventario obj)
     {
         return negocio.Insertar(obj)
@@ -41,6 +43,7 @@ public class InventarioController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "ADMINISTRADOR")]
     public IActionResult Put([FromBody] Inventario obj)
     {
         return negocio.Actualizar(obj)
@@ -49,6 +52,7 @@ public class InventarioController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "ADMINISTRADOR")]
     public IActionResult Delete(int id)
     {
         return negocio.Eliminar(id)

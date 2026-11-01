@@ -1,8 +1,14 @@
+using Aplicacion_web_2025_V1.Context;               
+using Aplicacion_web_2025_V1.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;                
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
+using System.Text;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,18 +23,16 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Jwt:Issuer"]) || string.IsN
     throw new InvalidOperationException("Configura Jwt:Issuer y Jwt:Audience en App Service.");
 
 
-// Add services to the container. 
+// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at 
-https://aka.ms/aspnetcore/swashbuckle 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
-
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Ferreteria Don_To�o",
+        Title = "Ferreteria Don_Toño",
         Version = "v1",
         Contact = new OpenApiContact
         {
@@ -49,8 +53,8 @@ builder.Services.AddSwaggerGen(c =>
     });
 
     c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-       {
-          {
+    {
+        {
             new Microsoft.OpenApi.Models.OpenApiSecurityScheme
             {
                 Reference = new Microsoft.OpenApi.Models.OpenApiReference
@@ -60,8 +64,8 @@ builder.Services.AddSwaggerGen(c =>
                 }
             },
             new string[]{}
-          }
-       });
+        }
+    });
 });
 
 // Configurar JWT
@@ -78,6 +82,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
+        RoleClaimType = ClaimTypes.Role,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
@@ -87,15 +92,31 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    // Por defecto, la API queda reservada al administrador.
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
-        .RequireRole("Administrador")
+        .RequireAuthenticatedUser()
         .Build();
 });
 
+// ---- MongoDB ----
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDb"));
+
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+    return new MongoClient(settings.ConnectionString);
+});
+
+builder.Services.AddScoped<MetricasService>();
+builder.Services.AddScoped<LogService>();
+
+// ---- EF Core (NUEVO) ----
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline. 
+// Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
 
@@ -108,47 +129,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-
-
-
-
-
-
-
-
-/*var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
-
-app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}*/

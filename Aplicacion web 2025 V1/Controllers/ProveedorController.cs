@@ -1,7 +1,8 @@
-﻿using Capa_Entidad;
+using Capa_Entidad;
 using Capa_Negocio;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Aplicacion_web_2025_V1.Controllers
 {
@@ -35,6 +36,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         //}
 
         [HttpPost]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult Insertar([FromBody] Proveedor obj)
         {
             bool respuesta = negocio.Insertar(obj);
@@ -46,6 +48,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult Actualizar([FromBody] Proveedor obj)
         {
             bool respuesta = negocio.Actualizar(obj);
@@ -57,6 +60,7 @@ namespace Aplicacion_web_2025_V1.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public IActionResult Eliminar(int id)
         {
             bool respuesta = negocio.Eliminar(id);

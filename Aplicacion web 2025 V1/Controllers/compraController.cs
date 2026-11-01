@@ -1,4 +1,4 @@
-﻿using Capa_Entidad;
+using Capa_Entidad;
 using Capa_Negocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +8,7 @@ namespace Aplicacion_web_2025_V1.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "ADMINISTRADOR")]
     public class compraController : ControllerBase
     {
         private readonly Compra_Negocio _compraNegocio;
