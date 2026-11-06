@@ -3,10 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aplicacion_web_2025_V1.Context;
 
-/// <summary>
-/// EF model for the core tables shown in the Mini_FerreteriaDT diagram.
-/// The current API still uses ADO.NET for its CRUD and stored-procedure calls.
-/// </summary>
 public sealed class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

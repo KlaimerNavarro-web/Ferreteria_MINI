@@ -11,7 +11,6 @@ public class MetricasController : ControllerBase
 
     public MetricasController(MetricasService service) => _service = service;
 
-    // GET api/metricas/ventas/promedio-producto-cliente?inicio=2026-10-05&semanas=3
     [HttpGet("ventas/promedio-producto-cliente")]
     public async Task<IActionResult> PromedioProductoCliente(
         [FromQuery] DateTime inicio, [FromQuery] int semanas = 3)
@@ -23,7 +22,7 @@ public class MetricasController : ControllerBase
         return Ok(new { periodo = $"{semanas} semanas", datos });
     }
 
-    // GET api/metricas/productos-mas-vendidos?limite=5
+ 
     [HttpGet("productos-mas-vendidos")]
     public async Task<IActionResult> ProductosMasVendidos([FromQuery] int limite = 5)
     {
@@ -34,7 +33,6 @@ public class MetricasController : ControllerBase
         return Ok(datos);
     }
 
-    // GET api/metricas/ventas-por-semana?inicio=2026-10-05&semanas=4
     [HttpGet("ventas-por-semana")]
     public async Task<IActionResult> VentasPorSemana(
         [FromQuery] DateTime inicio, [FromQuery] int semanas = 4)

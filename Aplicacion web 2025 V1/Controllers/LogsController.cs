@@ -10,7 +10,7 @@ public class LogsController : ControllerBase
 
     public LogsController(LogService logService) => _logService = logService;
 
-    // GET api/logs?tipo=metrica_ventas&limite=20
+   
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] string? tipo, [FromQuery] int limite = 50)
     {

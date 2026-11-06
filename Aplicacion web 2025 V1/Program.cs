@@ -23,7 +23,7 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Jwt:Issuer"]) || string.IsN
     throw new InvalidOperationException("Configura Jwt:Issuer y Jwt:Audience en App Service.");
 
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -110,7 +110,7 @@ builder.Services.AddSingleton<IMongoClient>(sp =>
 builder.Services.AddScoped<MetricasService>();
 builder.Services.AddScoped<LogService>();
 
-// ---- EF Core (NUEVO) ----
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
